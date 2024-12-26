@@ -19,9 +19,18 @@ class Unjoin:
         self.entry.pack()
 
     def unjoin(self):
-        lst = self.entry.get().split()
-        self.label_left["text"] = lst[0]
-        self.label_right["text"] = lst[1:]
+        text = self.entry.get()
+        if len(text) > 0:
+            lst = text.split()
+            if len(lst) > 1:
+                self.label_left["text"] = lst[0]
+                self.label_right["text"] = lst[1:]
+            else:
+                self.label_left["text"] = lst[0]
+                self.label_right["text"] = "Empty"
+        else:
+            self.label_left["text"] = "Empty"
+            self.label_right["text"] = "Empty"
 
 
 root = Tk()
