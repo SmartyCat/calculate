@@ -11,15 +11,14 @@ class Interface:
             self.frame,
             text="Input",
             variable=self.var,
-            onvalue=1,
-            offvalue=0,
-            command=self.change,
+            command=self.toggle_label_visibillity,
         )
+        
 
         self.frame.pack(side=TOP)
         self.check_button.pack()
 
-    def change(self):
+    def toggle_label_visibillity(self):
 
         if self.var.get():
             self.label.pack(side=BOTTOM)
