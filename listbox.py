@@ -30,7 +30,7 @@ class Interface:
         select = list(self.right_box.curselection())
         select.reverse()
         for i in select:
-            self.left_box.insert(0, self.right_box.get([i]))
+            self.left_box.insert(0, self.right_box.get(i))
         for i in select:
             self.right_box.delete(i)
 
@@ -38,7 +38,7 @@ class Interface:
         select = list(self.left_box.curselection())
         select.reverse()
         for i in select:
-            self.right_box.insert(0, self.left_box.get([i]))
+            self.right_box.insert(0, self.left_box.get(i))
         for i in select:
             self.left_box.delete(i)
 
@@ -46,6 +46,6 @@ class Interface:
 root = Tk()
 root.title("Interface")
 
-i = Interface(["banana","apple","cherry","grape","watermelon"], root)
+i = Interface(["banana", "apple", "cherry", "grape", "watermelon"], root)
 
 root.mainloop()
