@@ -202,7 +202,8 @@ class Calculator:
                 x = int(eval(x))
                 self.entry.insert(END, "=" + str(x / 100))
         except ValueError as e:
-            self.entry.insert(END, "=Error")
+            self.entry.delete(1.0,END)
+            self.entry.insert(1.0, "Error")
 
     def equel(self):
         exp = self.entry.get(1.0, END).strip()
@@ -210,7 +211,8 @@ class Calculator:
             result = eval(exp)
             self.entry.insert(END, "=" + str(result))
         except Exception:
-            self.entry.insert(END, "=Error")
+            self.entry.delete(1.0,END)
+            self.entry.insert(1.0,"Error")
         
 
 root = Tk()
