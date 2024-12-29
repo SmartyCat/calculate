@@ -1,4 +1,5 @@
 from tkinter import *
+import re
 
 
 class Calculator:
@@ -180,6 +181,8 @@ class Calculator:
         self.button_9.pack(side=LEFT)
         self.button_0.pack(side=LEFT)
 
+        self.entry.bind("<Key>",lambda e: "break")
+
     def add_to_text(self, x):
         self.entry.insert(END, x)
 
@@ -202,12 +205,13 @@ class Calculator:
             self.entry.insert(END, "=Error")
 
     def equel(self):
-        exp=self.entry.get(1.0,END).strip()
+        exp = self.entry.get(1.0, END).strip()
         try:
-            result=eval(exp)
-            self.entry.insert(END,"="+str(result))
+            result = eval(exp)
+            self.entry.insert(END, "=" + str(result))
         except Exception:
-            self.entry.insert(END,"=Error")    
+            self.entry.insert(END, "=Error")
+        
 
 root = Tk()
 
