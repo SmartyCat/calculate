@@ -193,17 +193,21 @@ class Calculator:
         x = self.entry.get(1.0, END)
         try:
             if "." in x:
-                x = float(x)
+                x = float(eval(x))
                 self.entry.insert(END, "=" + str(x / 100))
             else:
-                x = int(x)
+                x = int(eval(x))
                 self.entry.insert(END, "=" + str(x / 100))
         except ValueError as e:
             self.entry.insert(END, "=Error")
 
     def equel(self):
-        self.entry.insert(END, "=")
-
+        exp=self.entry.get(1.0,END).strip()
+        try:
+            result=eval(exp)
+            self.entry.insert(END,"="+str(result))
+        except Exception:
+            self.entry.insert(END,"=Error")    
 
 root = Tk()
 
