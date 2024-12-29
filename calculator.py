@@ -1,5 +1,5 @@
 from tkinter import *
-import re
+from math import sqrt
 
 
 class Calculator:
@@ -66,7 +66,9 @@ class Calculator:
             bg="purple",
             command=lambda i=".": self.add_to_text(i),
         )
-        self.button_sqrt = Button(self.frame, width=3, height=1, text="√", bg="purple")
+        self.button_sqrt = Button(
+            self.frame, width=3, height=1, text="√", bg="purple", command=self.sq
+        )
         self.button_eq = Button(
             self.frame,
             width=3,
@@ -181,7 +183,7 @@ class Calculator:
         self.button_9.pack(side=LEFT)
         self.button_0.pack(side=LEFT)
 
-        self.entry.bind("<Key>",lambda e: "break")
+        self.entry.bind("<Key>", lambda e: "break")
 
     def add_to_text(self, x):
         self.entry.insert(END, x)
@@ -202,7 +204,7 @@ class Calculator:
                 x = int(eval(x))
                 self.entry.insert(END, "=" + str(x / 100))
         except ValueError as e:
-            self.entry.delete(1.0,END)
+            self.entry.delete(1.0, END)
             self.entry.insert(1.0, "Error")
 
     def equel(self):
@@ -211,9 +213,20 @@ class Calculator:
             result = eval(exp)
             self.entry.insert(END, "=" + str(result))
         except Exception:
-            self.entry.delete(1.0,END)
-            self.entry.insert(1.0,"Error")
-        
+            self.entry.delete(1.0, END)
+            self.entry.insert(1.0, "Error")
+
+    def sq(self):
+        x = self.entry.get(1.0, END)
+        try:
+            if "." in x:
+                self.entry.insert(END, "=" + str(sqrt(float(x))))
+            else:
+                self.entry.insert(END, "=" + str(sqrt(int(x))))
+        except ValueError:
+            self.entry.delete(1.0, END)
+            self.entry.insert("Error")
+
 
 root = Tk()
 
